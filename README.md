@@ -1,10 +1,7 @@
 # Keycloak Provider for OAuth 2.0 Client
-[![Latest Version](https://img.shields.io/github/release/pviojo/oauth2-keycloak.svg?style=flat-square)](https://github.com/stevenmaguire/oauth2-keycloak/releases)
+[![Latest Version](https://img.shields.io/github/release/pviojo/oauth2-keycloak.svg?style=flat-square)](https://github.com/pviojo/oauth2-keycloak/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/pviojo/oauth2-keycloak/master.svg?style=flat-square)](https://travis-ci.org/stevenmaguire/oauth2-keycloak)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pviojo/oauth2-keycloak.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevenmaguire/oauth2-keycloak/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/pviojo/oauth2-keycloak.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevenmaguire/oauth2-keycloak)
-[![Total Downloads](https://img.shields.io/packagist/dt/pviojo/oauth2-keycloak.svg?style=flat-square)](https://packagist.org/packages/stevenmaguire/oauth2-keycloak)
+[![Total Downloads](https://img.shields.io/packagist/dt/pviojo/oauth2-keycloak.svg?style=flat-square)](https://packagist.org/packages/pviojo/oauth2-keycloak)
 
 This package provides Keycloak OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
 
@@ -18,7 +15,7 @@ composer require pviojo/oauth2-keycloak
 
 ## Usage
 
-Usage is the same as The League's OAuth client, using `\Stevenmaguire\OAuth2\Client\Provider\Keycloak` as the provider.
+Usage is the same as The League's OAuth client, using `\pviojo\OAuth2\Client\Provider\Keycloak` as the provider.
 
 Use `authServerUrl` to specify the Keycloak server URL. You can lookup the correct value from the Keycloak client installer JSON under `auth-server-url`, eg. `http://localhost:8080/auth`.
 
@@ -27,7 +24,7 @@ Use `realm` to specify the Keycloak realm name. You can lookup the correct value
 ### Authorization Code Flow
 
 ```php
-$provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
+$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
     'authServerUrl'         => '{keycloak-server-url}',
     'realm'                 => '{keycloak-realm}',
     'clientId'              => '{keycloak-client-id}',
@@ -84,7 +81,7 @@ if (!isset($_GET['code'])) {
 ### Refreshing a Token
 
 ```php
-$provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
+$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
     'authServerUrl'     => '{keycloak-server-url}',
     'realm'             => '{keycloak-realm}',
     'clientId'          => '{keycloak-client-id}',
@@ -114,7 +111,7 @@ If you've configured your Keycloak instance to use encryption, there are some ad
 #### Configure the provider to use the same encryption algorithm
 
 ```php
-$provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
+$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
     // ...
     'encryptionAlgorithm'   => 'RS256',
 ]);
@@ -135,7 +132,7 @@ $key = "-----BEGIN PUBLIC KEY-----\n....\n-----END PUBLIC KEY-----";
 // or
 // $key = "-----BEGIN CERTIFICATE-----\n....\n-----END CERTIFICATE-----";
 
-$provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
+$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
     // ...
     'encryptionKey'   => $key,
 ]);
@@ -152,7 +149,7 @@ $provider->setEncryptionKey($key);
 ```php
 $keyPath = '../key.pem';
 
-$provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
+$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
     // ...
     'encryptionKeyPath'   => $keyPath,
 ]);
