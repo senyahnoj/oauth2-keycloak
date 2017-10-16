@@ -1,12 +1,12 @@
 {
-    "name": "stevenmaguire/oauth2-keycloak",
+    "name": "pviojo/oauth2-keycloak",
     "description": "Keycloak OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
     "license": "MIT",
     "authors": [
         {
-            "name": "Steven Maguire",
-            "email": "stevenmaguire@gmail.com",
-            "homepage": "https://github.com/stevenmaguire"
+            "name": "Pablo Viojo",
+            "email": "pviojo@gmail.com",
+            "homepage": "https://github.com/pviojo"
         }
     ],
     "keywords": [
@@ -14,6 +14,7 @@
         "oauth2",
         "client",
         "authorization",
+        "roles",
         "authorisation",
         "keycloak"
     ],
@@ -28,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Stevenmaguire\\OAuth2\\Client\\": "src/"
+            "pviojo\\OAuth2\\Client\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Stevenmaguire\\OAuth2\\Client\\Test\\": "test/src/"
+            "pviojo\\OAuth2\\Client\\Test\\": "test/src/"
         }
     },
     "extra": {
