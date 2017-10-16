@@ -1,10 +1,10 @@
 # Keycloak Provider for OAuth 2.0 Client
-[![Latest Version](https://img.shields.io/github/release/stevenmaguire/oauth2-keycloak.svg?style=flat-square)](https://github.com/stevenmaguire/oauth2-keycloak/releases)
+[![Latest Version](https://img.shields.io/github/release/pviojo/oauth2-keycloak.svg?style=flat-square)](https://github.com/stevenmaguire/oauth2-keycloak/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/stevenmaguire/oauth2-keycloak/master.svg?style=flat-square)](https://travis-ci.org/stevenmaguire/oauth2-keycloak)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/stevenmaguire/oauth2-keycloak.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevenmaguire/oauth2-keycloak/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/stevenmaguire/oauth2-keycloak.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevenmaguire/oauth2-keycloak)
-[![Total Downloads](https://img.shields.io/packagist/dt/stevenmaguire/oauth2-keycloak.svg?style=flat-square)](https://packagist.org/packages/stevenmaguire/oauth2-keycloak)
+[![Build Status](https://img.shields.io/travis/pviojo/oauth2-keycloak/master.svg?style=flat-square)](https://travis-ci.org/stevenmaguire/oauth2-keycloak)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pviojo/oauth2-keycloak.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevenmaguire/oauth2-keycloak/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/pviojo/oauth2-keycloak.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevenmaguire/oauth2-keycloak)
+[![Total Downloads](https://img.shields.io/packagist/dt/pviojo/oauth2-keycloak.svg?style=flat-square)](https://packagist.org/packages/stevenmaguire/oauth2-keycloak)
 
 This package provides Keycloak OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
 
@@ -13,7 +13,7 @@ This package provides Keycloak OAuth 2.0 support for the PHP League's [OAuth 2.0
 To install, use composer:
 
 ```
-composer require stevenmaguire/oauth2-keycloak
+composer require pviojo/oauth2-keycloak
 ```
 
 ## Usage
@@ -95,6 +95,18 @@ $provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
 $token = $provider->getAccessToken('refresh_token', ['refresh_token' => $token->getRefreshToken()]);
 ```
 
+### Getting user roles
+
+After authenticating retrieve roles from the resource owner.
+
+```php
+$user = $provider->getResourceOwner($token);
+$roles = $user->getRoles(); //retrieve all roles
+$rolesClient = $user->getRolesForClient($client); //retrieve all roles for given $client
+$hasRole = $user->hasRoleForClient($client, $role); //check if user has the $role for  $client
+$hasAccess = $user->hasAccessToClient($client, $role); //check if user has access to $client (at least one role)
+```
+
 ### Handling encryption
 
 If you've configured your Keycloak instance to use encryption, there are some advanced options available to you.
@@ -160,15 +172,16 @@ $ ./vendor/bin/phpunit
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/stevenmaguire/oauth2-keycloak/blob/master/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/pviojo/oauth2-keycloak/blob/master/CONTRIBUTING.md) for details.
 
 
 ## Credits
 
+- [Pablo Viojo](https://github.com/pviojo)
 - [Steven Maguire](https://github.com/stevenmaguire)
-- [All Contributors](https://github.com/stevenmaguire/oauth2-keycloak/contributors)
+- [All Contributors](https://github.com/pviojo/oauth2-keycloak/contributors)
 
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/stevenmaguire/oauth2-keycloak/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/pviojo/oauth2-keycloak/blob/master/LICENSE) for more information.
