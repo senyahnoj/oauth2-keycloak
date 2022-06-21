@@ -3,7 +3,6 @@
 namespace pviojo\OAuth2\Client\Provider;
 
 use Exception;
-use Firebase\JWT\JWT;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
@@ -65,39 +64,6 @@ class Keycloak extends AbstractProvider
             unset($options['encryptionKeyPath']);
         }
         parent::__construct($options, $collaborators);
-    }
-
-    /**
-     * Attempts to decrypt the given response.
-     *
-     * @param  string|array|null $response
-     *
-     * @return string|array|null
-     */
-    public function decryptResponse($response)
-    {
-        if (is_string($response)) {
-            if ($this->encryptionAlgorithm && $this->encryptionKey) {
-                $response = json_decode(
-                    json_encode(
-                        JWT::decode(
-                            $response,
-                            $this->encryptionKey,
-                            array($this->encryptionAlgorithm)
-                        )
-                    ),
-                    true
-                );
-            } else {
-                throw new EncryptionConfigurationException(
-                    'The given response may be encrypted and sufficient '.
-                    'encryption configuration has not been provided.',
-                    400
-                );
-            }
-        }
-
-        return $response;
     }
 
     /**
@@ -197,8 +163,6 @@ class Keycloak extends AbstractProvider
     public function getResourceOwner(AccessToken $token)
     {
         $response = $this->fetchResourceOwnerDetails($token);
-
-        $response = $this->decryptResponse($response);
 
         return $this->createResourceOwner($response, $token);
     }

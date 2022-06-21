@@ -29,10 +29,7 @@ $provider = new pviojo\OAuth2\Client\Provider\Keycloak([
     'realm'                 => '{keycloak-realm}',
     'clientId'              => '{keycloak-client-id}',
     'clientSecret'          => '{keycloak-client-secret}',
-    'redirectUri'           => 'https://example.com/callback-url',
-    'encryptionAlgorithm'   => 'RS256',                             // optional
-    'encryptionKeyPath'     => '../key.pem'                         // optional
-    'encryptionKey'         => 'contents_of_key_or_certificate'     // optional
+    'redirectUri'           => 'https://example.com/callback-url'
 ]);
 
 if (!isset($_GET['code'])) {
@@ -102,63 +99,6 @@ $roles = $user->getRoles(); //retrieve all roles
 $rolesClient = $user->getRolesForClient($client); //retrieve all roles for given $client
 $hasRole = $user->hasRoleForClient($client, $role); //check if user has the $role for  $client
 $hasAccess = $user->hasAccessToClient($client, $role); //check if user has access to $client (at least one role)
-```
-
-### Handling encryption
-
-If you've configured your Keycloak instance to use encryption, there are some advanced options available to you.
-
-#### Configure the provider to use the same encryption algorithm
-
-```php
-$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
-    // ...
-    'encryptionAlgorithm'   => 'RS256',
-]);
-```
-
-or
-
-```php
-$provider->setEncryptionAlgorithm('RS256');
-```
-
-#### Configure the provider to use the expected decryption public key or certificate
-
-##### By key value
-
-```php
-$key = "-----BEGIN PUBLIC KEY-----\n....\n-----END PUBLIC KEY-----";
-// or
-// $key = "-----BEGIN CERTIFICATE-----\n....\n-----END CERTIFICATE-----";
-
-$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
-    // ...
-    'encryptionKey'   => $key,
-]);
-```
-
-or
-
-```php
-$provider->setEncryptionKey($key);
-```
-
-##### By key path
-
-```php
-$keyPath = '../key.pem';
-
-$provider = new pviojo\OAuth2\Client\Provider\Keycloak([
-    // ...
-    'encryptionKeyPath'   => $keyPath,
-]);
-```
-
-or
-
-```php
-$provider->setEncryptionKeyPath($keyPath);
 ```
 
 ## Testing
